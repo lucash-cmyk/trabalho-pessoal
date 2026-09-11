@@ -1,0 +1,1075 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #100b0c;
+  --bg-soft: #171011;
+  --card: #1d1516;
+  --text: #f4e9df;
+  --muted: #b9aaa0;
+  --gold: #c9953d;
+  --gold-light: #e4b65d;
+  --line: rgba(228, 182, 93, .22);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(201,149,61,.10), transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+}
+
+main {
+  width: 100%;
+  overflow: hidden;
+}
+
+section {
+  width: min(100%, 900px);
+  margin: auto;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 70px 22px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.heart-glow {
+  color: var(--gold);
+  font-size: 25px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 25px rgba(201,149,61,.4);
+  animation: pulse 2.5s infinite;
+}
+
+.eyebrow {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--text);
+  letter-spacing: .5px;
+  margin-bottom: 7px;
+}
+
+h1, h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: clamp(38px, 7vw, 72px);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+h2 {
+  font-size: clamp(26px, 5vw, 40px);
+  line-height: 1.05;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+.hero-photo {
+  width: min(330px, 78vw);
+  aspect-ratio: 4 / 5;
+  margin: 35px auto 20px;
+  padding: 8px;
+  background: #f0e5d7;
+  box-shadow: 0 25px 60px rgba(0,0,0,.5);
+  transform: rotate(-1.5deg);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.date-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.date-badge strong {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.section {
+  padding: 80px 22px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.polaroid {
+  width: min(390px, 82vw);
+  margin: 35px auto 25px;
+  padding: 10px 10px 18px;
+  background: #eee3d7;
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+  transform: rotate(-1deg);
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid p {
+  color: #443b36;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 9px;
+}
+
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.gallery-controls button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font-size: 25px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.gallery-controls button:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  transform: scale(1.05);
+}
+
+.dots {
+  display: flex;
+  gap: 7px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #413536;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.dot.active {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+
+.timer-section {
+  padding-top: 75px;
+}
+
+.time-grid {
+  margin: 40px auto 0;
+  width: min(850px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.time-card {
+  min-height: 120px;
+  padding: 22px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.time-card span {
+  color: var(--gold-light);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(38px, 6vw, 58px);
+  line-height: 1;
+}
+
+.time-card small {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: lowercase;
+  letter-spacing: .8px;
+}
+
+.live-text {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 25px;
+}
+
+.music-section {
+  padding: 80px 22px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  width: min(100%, 900px);
+  margin: auto;
+}
+
+.music-card {
+  width: min(560px, 100%);
+  margin: 35px auto 0;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  text-align: left;
+}
+
+.music-disc {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #2b1d13;
+  color: var(--gold-light);
+  font-size: 24px;
+  border: 1px solid var(--line);
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.music-info strong {
+  font-size: 13px;
+}
+
+.music-info span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+#musicBtn {
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold-light);
+  border-radius: 999px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+#musicBtn:hover {
+  background: rgba(201,149,61,.12);
+}
+
+.youtube-player {
+  width: min(560px, 100%);
+  aspect-ratio: 16 / 9;
+  margin: 20px auto 0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: none;
+  border: 1px solid var(--line);
+}
+
+.youtube-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.music-note {
+  color: #8e817a;
+  font-size: 10px;
+  margin-top: 12px;
+}
+
+.final-section {
+  min-height: 65vh;
+  padding: 100px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.final-heart {
+  color: var(--gold);
+  font-size: 30px;
+  margin-bottom: 25px;
+  animation: pulse 2.5s infinite;
+}
+
+.final-section h2 {
+  font-size: clamp(34px, 6vw, 55px);
+}
+
+.final-section p {
+  margin-top: 25px;
+  color: var(--gold-light);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+}
+
+.final-section span {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.13); opacity: 1; }
+}
+
+@media (max-width: 650px) {
+  .hero {
+    min-height: 92vh;
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .time-card:last-child {
+    grid-column: span 2;
+  }
+
+  .music-card {
+    flex-wrap: wrap;
+  }
+
+  #musicBtn {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 390px) {
+  .time-card {
+    min-height: 105px;
+  }
+
+  .music-info {
+    max-width: 150px;
+  }
+}
+
+/* =========================================================
+   ✨ ANIMAÇÕES EXTRAS - SITE DO CASAL
+   ========================================================= */
+
+/* ---------- FUNDO ANIMADO ---------- */
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(80px);
+  opacity: .18;
+}
+
+body::before {
+  background: var(--gold);
+  top: -180px;
+  left: -180px;
+  animation: lightMove 12s ease-in-out infinite alternate;
+}
+
+body::after {
+  background: #8b3d46;
+  right: -180px;
+  bottom: -150px;
+  animation: lightMove2 15s ease-in-out infinite alternate;
+}
+
+@keyframes lightMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(180px, 120px) scale(1.2);
+  }
+
+  100% {
+    transform: translate(80px, 280px) scale(.9);
+  }
+}
+
+@keyframes lightMove2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-150px, -100px) scale(1.25);
+  }
+
+  100% {
+    transform: translate(-50px, -220px) scale(.9);
+  }
+}
+
+
+/* ---------- HERO MAIS ANIMADO ---------- */
+
+.hero {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "♥";
+  position: absolute;
+  font-size: 30px;
+  color: var(--gold);
+  opacity: .15;
+  left: 12%;
+  bottom: 15%;
+  animation: floatingHeart 7s ease-in-out infinite;
+}
+
+.hero::after {
+  content: "♥";
+  position: absolute;
+  font-size: 18px;
+  color: var(--gold-light);
+  opacity: .2;
+  right: 15%;
+  top: 20%;
+  animation: floatingHeart2 9s ease-in-out infinite;
+}
+
+@keyframes floatingHeart {
+  0%, 100% {
+    transform: translateY(0) rotate(-10deg);
+  }
+
+  50% {
+    transform: translateY(-45px) rotate(10deg);
+  }
+}
+
+@keyframes floatingHeart2 {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(50px) scale(1.4);
+  }
+}
+
+
+/* ---------- CORAÇÃO PRINCIPAL ---------- */
+
+.heart-glow {
+  animation:
+    pulse 2.5s infinite,
+    heartFloat 4s ease-in-out infinite;
+}
+
+@keyframes heartFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* ---------- TÍTULO ---------- */
+
+h1 {
+  position: relative;
+  animation: titleEnter 1.2s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes titleEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(.95);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* Brilho passando pelo título */
+
+h1::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.35) 45%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  animation: shineTitle 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shineTitle {
+  0%, 65% {
+    transform: translateX(-120%);
+  }
+
+  80%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+
+/* ---------- SUBTÍTULO ---------- */
+
+.subtitle,
+.eyebrow,
+.date-badge {
+  animation: fadeUp 1s ease both;
+}
+
+.eyebrow {
+  animation-delay: .15s;
+}
+
+.subtitle {
+  animation-delay: .3s;
+}
+
+.date-badge {
+  animation-delay: .6s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ---------- FOTO PRINCIPAL ---------- */
+
+.hero-photo {
+  position: relative;
+  transition:
+    transform .7s cubic-bezier(.2,.8,.2,1),
+    box-shadow .7s ease;
+
+  animation:
+    photoEnter 1.2s .35s cubic-bezier(.2,.8,.2,1) both,
+    photoFloat 6s 1.6s ease-in-out infinite;
+}
+
+.hero-photo:hover {
+  transform:
+    rotate(0deg)
+    scale(1.035)
+    translateY(-8px);
+
+  box-shadow:
+    0 35px 80px rgba(0,0,0,.6),
+    0 0 45px rgba(201,149,61,.16);
+}
+
+@keyframes photoEnter {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(-1.5deg) scale(1);
+  }
+}
+
+@keyframes photoFloat {
+  0%, 100% {
+    transform: rotate(-1.5deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(1deg) translateY(-8px);
+  }
+}
+
+
+/* ---------- SEÇÕES ---------- */
+
+.section,
+.timer-section,
+.music-section,
+.final-section {
+  position: relative;
+}
+
+
+/* Linha dourada animada */
+
+.section::before,
+.timer-section::before,
+.music-section::before,
+.final-section::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+  transform: translateX(-50%);
+  animation: lineGrow 2s ease forwards;
+}
+
+@keyframes lineGrow {
+  to {
+    width: 70%;
+  }
+}
+
+
+/* ---------- POLAROID ---------- */
+
+.polaroid {
+  transition:
+    transform .5s cubic-bezier(.2,.8,.2,1),
+    box-shadow .5s ease;
+
+  animation: polaroidEnter .9s ease both;
+}
+
+.polaroid:hover {
+  transform:
+    rotate(0deg)
+    scale(1.025)
+    translateY(-8px);
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.6),
+    0 0 35px rgba(201,149,61,.12);
+}
+
+.polaroid img {
+  transition: transform .7s ease;
+}
+
+.polaroid:hover img {
+  transform: scale(1.04);
+}
+
+@keyframes polaroidEnter {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(-5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+
+/* ---------- BOTÕES DA GALERIA ---------- */
+
+.gallery-controls button {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-controls button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--gold);
+  opacity: 0;
+  transform: scale(.5);
+  transition: .3s;
+}
+
+.gallery-controls button:hover::before {
+  opacity: .12;
+  transform: scale(1);
+}
+
+
+/* ---------- DOTS ---------- */
+
+.dot {
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.dot.active {
+  box-shadow:
+    0 0 12px rgba(201,149,61,.7),
+    0 0 25px rgba(201,149,61,.3);
+}
+
+
+/* ---------- CONTADOR ---------- */
+
+.time-grid {
+  position: relative;
+}
+
+.time-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .4s ease,
+    background .4s ease,
+    box-shadow .4s ease;
+}
+
+.time-card::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--gold);
+  filter: blur(55px);
+  opacity: 0;
+  transition: .4s;
+}
+
+.time-card:hover {
+  transform: translateY(-7px);
+  background: rgba(201,149,61,.055);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.3);
+}
+
+.time-card:hover::before {
+  opacity: .18;
+}
+
+.time-card span {
+  transition: .4s;
+}
+
+.time-card:hover span {
+  text-shadow:
+    0 0 15px rgba(228,182,93,.45);
+  transform: scale(1.05);
+}
+
+
+/* ---------- SEGUNDOS PULSANDO ---------- */
+
+#seconds {
+  animation: secondsPulse 1s infinite;
+}
+
+@keyframes secondsPulse {
+  0%, 100% {
+    opacity: .85;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 18px rgba(228,182,93,.5);
+  }
+}
+
+
+/* ---------- TEXTO AO VIVO ---------- */
+
+.live-text {
+  animation: livePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    opacity: .55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* ---------- MÚSICA ---------- */
+
+.music-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease,
+    border-color .4s ease;
+}
+
+.music-card::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--gold);
+  filter: blur(80px);
+  opacity: .08;
+  left: -80px;
+  top: -80px;
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(228,182,93,.5);
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+
+/* Disco girando */
+
+.music-disc {
+  animation: discFloat 3s ease-in-out infinite;
+}
+
+@keyframes discFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* Botão tocar */
+
+#musicBtn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+#musicBtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--gold);
+  animation: musicRing 2s infinite;
+}
+
+#musicBtn:hover {
+  transform: scale(1.06);
+  background: rgba(201,149,61,.15);
+  box-shadow: 0 0 25px rgba(201,149,61,.18);
+}
+
+@keyframes musicRing {
+  0% {
+    transform: scale(1);
+    opacity: .8;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+
+/* ---------- VÍDEO ---------- */
+
+.youtube-player {
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.5);
+
+  animation: videoEnter .7s ease both;
+}
+
+@keyframes videoEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ---------- FINAL ---------- */
+
+.final-section {
+  overflow: hidden;
+}
+
+.final-section::after {
+  content: "♥";
+  position: absolute;
+  font-size: 260px;
+  color: var(--gold);
+  opacity: .025;
+  z-index: -1;
+  animation: giantHeart 8s ease-in-out infinite;
+}
+
+@keyframes giantHeart {
+  0%, 100% {
+    transform: scale(1) rotate(-5deg);
+  }
+
+  50% {
+    transform: scale(1.12) rotate(5deg);
+  }
+}
+
+.final-heart {
+  text-shadow:
+    0 0 20px rgba(201,149,61,.4),
+    0 0 50px rgba(201,149,61,.2);
+}
+
+
+/* ---------- APARECER AO ROLAR ---------- */
+
+@supports (animation-timeline: view()) {
+
+  .section > *,
+  .timer-section > *,
+  .music-section > *,
+  .final-section > * {
+    animation: revealOnScroll linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+
+  @keyframes revealOnScroll {
+    from {
+      opacity: 0;
+      transform: translateY(45px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+/* ---------- SELEÇÃO DE TEXTO ---------- */
+
+::selection {
+  background: var(--gold);
+  color: #160f0d;
+}
+
+
+/* ---------- SCROLLBAR ---------- */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0809;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #49341d;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+
+/* ---------- REDUÇÃO DE MOVIMENTO ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
