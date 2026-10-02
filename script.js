@@ -1,130 +1,445 @@
-// ==============================
-// CONFIGURAÇÕES
-// ==============================
-const startDate = new Date(2024, 4, 1, 0, 0, 0); // 01/05/2024
-const youtubeId = "Af7ieNv0wXY";
+// ========================================
+// CONTADOR
+// ========================================
 
-const photos = [
-  { src: "imagens/foto-1.jpeg", caption: "o começo de muitos momentos ❤️" },
-  { src: "imagens/foto-2.jpeg", caption: "nós dois, do nosso jeitinho" },
-  { src: "imagens/foto-3.jpeg", caption: "um dos nossos sorrisos" },
-  { src: "imagens/foto-4.jpeg", caption: "onde eu só queria estar: com você" },
-  { src: "imagens/foto-5.jpeg", caption: "mais um pedacinho da nossa história" },
-  { src: "imagens/foto-6.jpeg", caption: "você faz tudo ficar melhor" },
-  { src: "imagens/foto-7.jpeg", caption: "momentos que eu quero guardar" },
-  { src: "imagens/foto-8.jpeg", caption: "até os dias simples são especiais" },
-  { src: "imagens/foto-9.jpeg", caption: "que sorte a minha ter você" },
-  { src: "imagens/foto-10.jpeg", caption: "nosso amor em cada detalhe" },
-  { src: "imagens/foto-11.jpeg", caption: "mais uma memória pra nossa coleção" },
-  { src: "imagens/foto-12.jpeg", caption: "e que venham muitos outros momentos ❤️" }
+const dataInicio = new Date(2024, 4, 1, 0, 0, 0);
+
+function atualizarContador() {
+
+    const agora = new Date();
+
+    let anos =
+        agora.getFullYear() -
+        dataInicio.getFullYear();
+
+    let aniversario =
+        new Date(dataInicio);
+
+    aniversario.setFullYear(
+        dataInicio.getFullYear() + anos
+    );
+
+    if (aniversario > agora) {
+
+        anos--;
+
+        aniversario =
+            new Date(dataInicio);
+
+        aniversario.setFullYear(
+            dataInicio.getFullYear() + anos
+        );
+    }
+
+    let meses =
+        (agora.getFullYear() -
+            aniversario.getFullYear()) * 12
+        +
+        (agora.getMonth() -
+            aniversario.getMonth());
+
+    let dataMes =
+        new Date(aniversario);
+
+    dataMes.setMonth(
+        aniversario.getMonth() + meses
+    );
+
+    if (dataMes > agora) {
+
+        meses--;
+
+        dataMes =
+            new Date(aniversario);
+
+        dataMes.setMonth(
+            aniversario.getMonth() + meses
+        );
+    }
+
+    const diferenca =
+        agora.getTime() -
+        dataMes.getTime();
+
+    const dias =
+        Math.floor(
+            diferenca /
+            (1000 * 60 * 60 * 24)
+        );
+
+    const horas =
+        Math.floor(
+            (diferenca /
+                (1000 * 60 * 60)) % 24
+        );
+
+    const minutos =
+        Math.floor(
+            (diferenca /
+                (1000 * 60)) % 60
+        );
+
+    const segundos =
+        Math.floor(
+            (diferenca / 1000) % 60
+        );
+
+    const semanas =
+        Math.floor(dias / 7);
+
+
+    document.getElementById("years").textContent =
+        anos;
+
+    document.getElementById("months").textContent =
+        meses;
+
+    document.getElementById("weeks").textContent =
+        semanas;
+
+    document.getElementById("days").textContent =
+        dias;
+
+    document.getElementById("hours").textContent =
+        horas;
+
+    document.getElementById("minutes").textContent =
+        minutos;
+
+    document.getElementById("seconds").textContent =
+        segundos;
+}
+
+
+atualizarContador();
+
+setInterval(
+    atualizarContador,
+    1000
+);
+
+
+// ========================================
+// FOTOS
+// ========================================
+
+const fotos = [
+
+    {
+        imagem: "imagens/foto-1.jpeg",
+        texto: "O começo de muitos momentos ❤️"
+    },
+
+    {
+        imagem: "imagens/foto-2.jpeg",
+        texto: "Nós dois, do nosso jeitinho"
+    },
+
+    {
+        imagem: "imagens/foto-13.jpeg",
+        texto: "Nosso momento especial ❤️"
+    },
+
+    /* Foto 3 temporariamente removida da galeria
+    {
+        imagem: "imagens/foto-3.jpeg",
+        texto: "Um dos nossos sorrisos"
+    },
+    */
+
+    {
+        imagem: "imagens/foto-4.jpeg",
+        texto: "Onde eu só queria estar: com você"
+    },
+
+    {
+        imagem: "imagens/foto-5.jpeg",
+        texto: "Mais um pedacinho da nossa história"
+    },
+
+    {
+        imagem: "imagens/foto-6.jpeg",
+        texto: "Você faz tudo ficar melhor"
+    },
+
+    {
+        imagem: "imagens/foto-7.jpeg",
+        texto: "Momentos que eu quero guardar"
+    },
+
+    {
+        imagem: "imagens/foto-8.jpeg",
+        texto: "Até os dias simples são especiais"
+    },
+
+    {
+        imagem: "imagens/foto-9.jpeg",
+        texto: "Que sorte a minha ter você"
+    },
+
+    {
+        imagem: "imagens/foto-10.jpeg",
+        texto: "Nosso amor em cada detalhe"
+    },
+
+    {
+        imagem: "imagens/foto-11.jpeg",
+        texto: "Mais uma memória para nossa coleção"
+    },
+
+    {
+        imagem: "imagens/foto-12.jpeg",
+        texto: "E que venham muitos outros momentos ❤️"
+    }
+
 ];
 
-// ==============================
-// CONTADOR
-// ==============================
-function updateCounter() {
-  const now = new Date();
 
-  // Anos e meses pelo calendário
-  let years = now.getFullYear() - startDate.getFullYear();
-  let months = now.getMonth() - startDate.getMonth();
+let fotoAtual = 0;
 
-  if (now.getDate() < startDate.getDate()) {
-    months--;
-  }
 
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
+const imagemGaleria =
+    document.getElementById("galleryImage");
 
-  // Totais corridos
-  const totalSeconds = Math.floor((now - startDate) / 1000);
-  const totalMinutes = Math.floor(totalSeconds / 60);
-  const totalHours = Math.floor(totalMinutes / 60);
-  const totalDays = Math.floor(totalHours / 24);
-  const totalWeeks = Math.floor(totalDays / 7);
+const textoGaleria =
+    document.getElementById("photoCaption");
 
-  document.getElementById("years").textContent = years;
-  document.getElementById("months").textContent = years * 12 + months;
-  document.getElementById("weeks").textContent = totalWeeks;
-  document.getElementById("days").textContent = totalDays;
-  document.getElementById("hours").textContent = totalHours;
-  document.getElementById("minutes").textContent = totalMinutes;
-  document.getElementById("seconds").textContent = totalSeconds;
+const pontos =
+    document.getElementById("dots");
+
+
+// ========================================
+// CRIAR OS PONTOS
+// ========================================
+
+fotos.forEach(
+    function (foto, indice) {
+
+        const ponto =
+            document.createElement("button");
+
+        ponto.classList.add("dot");
+
+        ponto.setAttribute(
+            "type",
+            "button"
+        );
+
+        ponto.setAttribute(
+            "aria-label",
+            "Ir para foto " +
+            (indice + 1)
+        );
+
+
+        if (indice === 0) {
+
+            ponto.classList.add(
+                "active"
+            );
+        }
+
+
+        ponto.addEventListener(
+            "click",
+            function () {
+
+                mostrarFoto(indice);
+
+                reiniciarSlideshow();
+            }
+        );
+
+
+        pontos.appendChild(ponto);
+    }
+);
+
+
+// ========================================
+// MOSTRAR FOTO
+// ========================================
+
+function mostrarFoto(indice) {
+
+    if (indice >= fotos.length) {
+
+        fotoAtual = 0;
+
+    } else if (indice < 0) {
+
+        fotoAtual =
+            fotos.length - 1;
+
+    } else {
+
+        fotoAtual =
+            indice;
+    }
+
+
+    imagemGaleria.style.opacity =
+        "0";
+
+
+    setTimeout(
+        function () {
+
+            imagemGaleria.src =
+                fotos[fotoAtual].imagem;
+
+            textoGaleria.textContent =
+                fotos[fotoAtual].texto;
+
+            imagemGaleria.style.opacity =
+                "1";
+
+            atualizarPontos();
+
+        },
+        200
+    );
 }
 
-updateCounter();
-setInterval(updateCounter, 1000);
 
-// ==============================
-// GALERIA
-// ==============================
-const image = document.getElementById("galleryImage");
-const caption = document.getElementById("photoCaption");
-const dotsContainer = document.getElementById("dots");
-let currentPhoto = 0;
+// ========================================
+// ATUALIZAR PONTOS
+// ========================================
+
+function atualizarPontos() {
+
+    const todosOsPontos =
+        document.querySelectorAll(".dot");
+
+
+    todosOsPontos.forEach(
+        function (ponto, indice) {
+
+            ponto.classList.remove(
+                "active"
+            );
+
+
+            if (indice === fotoAtual) {
+
+                ponto.classList.add(
+                    "active"
+                );
+            }
+
+        }
+    );
+}
+
+
+// ========================================
+// BOTÃO ANTERIOR
+// ========================================
+
+document
+    .getElementById("prevBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            mostrarFoto(
+                fotoAtual - 1
+            );
+
+            reiniciarSlideshow();
+        }
+    );
+
+
+// ========================================
+// BOTÃO PRÓXIMA
+// ========================================
+
+document
+    .getElementById("nextBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            mostrarFoto(
+                fotoAtual + 1
+            );
+
+            reiniciarSlideshow();
+        }
+    );
+
+
+// ========================================
+// SLIDESHOW AUTOMÁTICO
+// ========================================
+
 let slideshow;
 
-photos.forEach((_, index) => {
-  const dot = document.createElement("button");
-  dot.className = "dot" + (index === 0 ? " active" : "");
-  dot.setAttribute("aria-label", `Ir para foto ${index + 1}`);
-  dot.addEventListener("click", () => {
-    showPhoto(index);
-    restartSlideshow();
-  });
-  dotsContainer.appendChild(dot);
-});
 
-function showPhoto(index) {
-  currentPhoto = (index + photos.length) % photos.length;
+function reiniciarSlideshow() {
 
-  image.style.opacity = "0";
+    clearInterval(slideshow);
 
-  setTimeout(() => {
-    image.src = photos[currentPhoto].src;
-    caption.textContent = photos[currentPhoto].caption;
-    image.style.opacity = "1";
-  }, 130);
 
-  document.querySelectorAll(".dot").forEach((dot, i) => {
-    dot.classList.toggle("active", i === currentPhoto);
-  });
+    slideshow =
+        setInterval(
+            function () {
+
+                mostrarFoto(
+                    fotoAtual + 1
+                );
+
+            },
+            4500
+        );
 }
 
-document.getElementById("prevBtn").addEventListener("click", () => {
-  showPhoto(currentPhoto - 1);
-  restartSlideshow();
-});
 
-document.getElementById("nextBtn").addEventListener("click", () => {
-  showPhoto(currentPhoto + 1);
-  restartSlideshow();
-});
+reiniciarSlideshow();
 
-function restartSlideshow() {
-  clearInterval(slideshow);
-  slideshow = setInterval(() => showPhoto(currentPhoto + 1), 4500);
-}
 
-restartSlideshow();
+// ========================================
+// ANIMAÇÃO AO DESCER
+// ========================================
 
-// ==============================
-// YOUTUBE / MÚSICA
-// ==============================
-const musicBtn = document.getElementById("musicBtn");
-const player = document.getElementById("youtubePlayer");
+const elementos =
+    document.querySelectorAll(
+        ".reveal"
+    );
 
-musicBtn.addEventListener("click", () => {
-  player.style.display = "block";
-  player.innerHTML = `
-    <iframe
-      src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&rel=0"
-      title="Nossa música"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  `;
-  musicBtn.textContent = "♫ Tocando";
-});
+
+const observador =
+    new IntersectionObserver(
+        function (entradas) {
+
+            entradas.forEach(
+                function (entrada) {
+
+                    if (
+                        entrada.isIntersecting
+                    ) {
+
+                        entrada.target.classList.add(
+                            "visible"
+                        );
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+
+elementos.forEach(
+    function (elemento) {
+
+        observador.observe(
+            elemento
+        );
+    }
+);
